@@ -1,5 +1,9 @@
 # HƯỚNG DẪN SETUP SUPABASE — DATABASE KHẢO SÁT
 
+> ⚠️ **DEPRECATED kể từ Prompt 19.** Submit khảo sát chính đã chuyển sang **Neon PostgreSQL** —
+> xem `markdown/NEON_SETUP_SURVEY_DATABASE.md`. Code đã gỡ `@supabase/supabase-js` và
+> `src/lib/supabase/server.ts`. Tài liệu này chỉ giữ để tham khảo lịch sử.
+
 > Submit khảo sát chính (kể từ Prompt 18) ghi vào **Supabase** qua API route
 > `/api/survey/submit` (server-side, dùng **service role key**). Google Sheets/Apps Script chỉ còn
 > là kênh backup/deprecated, không phải submit chính.

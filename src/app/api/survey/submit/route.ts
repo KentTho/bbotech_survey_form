@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
-import { getSupabaseAdmin } from "@/lib/supabase/server";
+import { sql } from "@/lib/neon/server";
 
-// Service role + Supabase SDK cần Node.js runtime (không phải Edge).
+// Ghi vào Neon PostgreSQL ở server-side. Giữ Node.js runtime.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -166,20 +166,33 @@ export async function POST(request: Request) {
   };
 
   try {
-    const supabase = getSupabaseAdmin();
-    const { data, error } = await supabase
-      .from("survey_responses")
-      .insert(row)
-      .select("id")
-      .single();
+    // Insert parameter-hoá vào Neon. Cột jsonb được stringify + cast ::jsonb.
+    const inserted = await sql`
+      INSERT INTO survey_responses (
+        survey_id, source, segment, audience, role, hotel_type, rooms,
+        biggest_pain, desired_solution, tech_readiness, willingness_to_pay,
+        budget_range, contact_permission, name, phone, hotel_company, position,
+        lead_score, priority, follow_up_status, notes,
+        answers, resources, contact, consent, page_url, user_agent, completed_at
+      ) VALUES (
+        ${row.survey_id}, ${row.source}, ${row.segment}, ${row.audience}, ${row.role},
+        ${row.hotel_type}, ${row.rooms}, ${row.biggest_pain}, ${row.desired_solution},
+        ${row.tech_readiness}, ${row.willingness_to_pay}, ${row.budget_range},
+        ${row.contact_permission}, ${row.name}, ${row.phone}, ${row.hotel_company},
+        ${row.position}, ${row.lead_score}, ${row.priority}, ${row.follow_up_status},
+        ${row.notes},
+        ${JSON.stringify(row.answers)}::jsonb,
+        ${row.resources === null ? null : JSON.stringify(row.resources)}::jsonb,
+        ${row.contact === null ? null : JSON.stringify(row.contact)}::jsonb,
+        ${row.consent}, ${row.page_url}, ${row.user_agent}, ${row.completed_at}
+      )
+      RETURNING id
+    `;
 
-    if (error) {
-      // Không log payload cá nhân; chỉ trả message lỗi từ DB.
-      return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ ok: true, id: data?.id });
+    const id = inserted[0]?.id;
+    return NextResponse.json({ ok: true, id });
   } catch (err) {
+    // Không log payload cá nhân; chỉ trả message lỗi.
     const message = err instanceof Error ? err.message : "Lỗi không xác định.";
     return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
