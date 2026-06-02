@@ -263,31 +263,29 @@ export default function SurveyFlow() {
   const handleSubmitSurvey = async () => {
     if (!resource || !consent) return;
 
-    // Google Sheets submit uses Apps Script Web App URL from NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL.
-    // Do not use the spreadsheet edit URL as an endpoint.
-    const endpoint = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL;
-
-    if (!endpoint) {
-      setSubmitError(
-        "Chưa cấu hình endpoint Google Sheets. Vui lòng kiểm tra NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL.",
-      );
-      return;
-    }
-
     setSubmitError("");
     setSubmitting(true);
 
     try {
       const payload = buildSubmissionPayload();
-      // Apps Script Web App thường giới hạn CORS nên dùng no-cors fire-and-forget.
-      // Không đọc response (opaque) — chỉ cần request được gửi đi.
-      await fetch(endpoint, {
+      // Submit chính qua API route nội bộ → Supabase (server-side, dùng service role).
+      // Không dùng no-cors: cần đọc được JSON response để biết thành công/thất bại.
+      const res = await fetch("/api/survey/submit", {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      setSubmitted(true);
+      const result = await res.json().catch(() => null);
+
+      if (res.ok && result?.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(
+          result?.error
+            ? "Không gửi được khảo sát: " + result.error
+            : "Không gửi được khảo sát. Vui lòng thử lại.",
+        );
+      }
     } catch {
       setSubmitError("Không gửi được khảo sát. Vui lòng thử lại.");
     } finally {
