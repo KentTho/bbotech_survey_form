@@ -34,20 +34,33 @@ function toIntOrNull(value: unknown): number | null {
   return Number.isNaN(n) ? null : n;
 }
 
-// Desired Solution: Owner lấy answers.Solution; Guest tổng hợp tín hiệu B2C.
+// "Biggest Pain": Owner lấy Pain; Guest gộp B2CPain + tín hiệu giá báo sai (PriceMismatch).
+function buildBiggestPain(isOwner: boolean, answers: AnyRecord): string {
+  if (isOwner) return joinArr(answers.Pain);
+  const parts: string[] = [];
+  const pain = joinArr(answers.B2CPain);
+  if (pain) parts.push(pain);
+  if (answers.PriceMismatch)
+    parts.push("Giá báo sau khác ban đầu: " + val(answers.PriceMismatch));
+  return parts.join(" | ");
+}
+
+// "Desired Solution": Owner lấy Solution; Guest tổng hợp tín hiệu kỳ vọng B2C.
 function buildDesiredSolution(isOwner: boolean, answers: AnyRecord): string {
   if (isOwner) return joinArr(answers.Solution);
   const parts: string[] = [];
-  if (answers.Criteria) parts.push("Quan tâm: " + joinArr(answers.Criteria));
-  if (answers.ResponseTime) parts.push("Mong phản hồi: " + val(answers.ResponseTime));
+  if (answers.Criteria) parts.push("Tiêu chí chọn: " + joinArr(answers.Criteria));
+  if (answers.ReplyInfo) parts.push("Mong trả lời ngay: " + joinArr(answers.ReplyInfo));
+  if (answers.ResponseTime) parts.push("Thời gian phản hồi: " + val(answers.ResponseTime));
   if (answers.BotAcceptance) parts.push("Chatbot: " + val(answers.BotAcceptance));
+  if (answers.TrustFactor) parts.push("Tạo niềm tin: " + joinArr(answers.TrustFactor));
   if (answers.OpenInsight) parts.push("Góp ý: " + val(answers.OpenInsight));
   return parts.join(" | ");
 }
 
-// Lead Score chỉ tính cho Owner (giữ logic tương đồng Apps Script); Guest = null.
-function calculateLeadScore(isOwner: boolean, answers: AnyRecord): number | null {
-  if (!isOwner) return null;
+// Lead Score: Owner tính server-side; Guest = 0.
+function calculateLeadScore(isOwner: boolean, answers: AnyRecord): number {
+  if (!isOwner) return 0;
   let score = 0;
   if (answers.LeadConsent === "Có") score += 30;
   if (answers.WTP === "Có" || answers.WTP === "Có, nếu thấy hiệu quả") score += 20;
@@ -63,14 +76,14 @@ function calculateLeadScore(isOwner: boolean, answers: AnyRecord): number | null
   return score;
 }
 
-function getPriority(score: number | null, audience: Audience): string {
+function getPriority(score: number, audience: Audience): string {
   if (audience !== "owner") return "Research"; // Guest
-  const s = score ?? 0;
-  if (s >= 70) return "Hot";
-  if (s >= 40) return "Warm";
+  if (score >= 70) return "Hot";
+  if (score >= 40) return "Warm";
   return "Cold";
 }
 
+// "Notes": gom toàn bộ dữ liệu phụ không có cột riêng + full answers JSON compact.
 function buildNotes(payload: AnyRecord, isOwner: boolean, answers: AnyRecord): string {
   const lines: string[] = [];
   lines.push("PageUrl: " + val(payload.pageUrl));
@@ -89,17 +102,15 @@ function buildNotes(payload: AnyRecord, isOwner: boolean, answers: AnyRecord): s
   } else {
     lines.push("TravelHistory: " + val(answers.TravelHistory));
     lines.push("BookingChannel: " + joinArr(answers.BookingChannel));
+    lines.push("FanpageZalo: " + val(answers.FanpageZalo));
     lines.push("SlowReplyLoss: " + val(answers.SlowReplyLoss));
     lines.push("Retention: " + val(answers.Retention));
     lines.push("Repeat: " + joinArr(answers.Repeat));
   }
-  return lines.join("\n");
-}
 
-function toCompletedAt(value: unknown): string | null {
-  if (!value) return null;
-  const d = new Date(String(value));
-  return Number.isNaN(d.getTime()) ? null : d.toISOString();
+  // Full answers compact JSON (không log ra console, chỉ lưu DB).
+  lines.push("AnswersJSON: " + JSON.stringify(answers));
+  return lines.join("\n");
 }
 
 export async function POST(request: Request) {
@@ -134,62 +145,52 @@ export async function POST(request: Request) {
     answers.LeadConsent || (payload.consent ? "Có" : "Không");
   const leadScore = calculateLeadScore(isOwner, answers);
 
+  // Mapping đúng 21 cột bảng survey_responses (Submit Date dùng DEFAULT now() server-side).
   const row = {
-    survey_id: val(payload.responseId),
+    surveyId: val(payload.responseId),
     source: val(payload.source),
     segment: val(payload.audienceLabel || payload.audience),
-    audience,
     role: isOwner ? val(answers.Role) : "Khách hàng",
-    hotel_type: val(answers.HotelType),
-    rooms: val(answers.Rooms),
-    biggest_pain: isOwner ? joinArr(answers.Pain) : joinArr(answers.B2CPain),
-    desired_solution: buildDesiredSolution(isOwner, answers),
-    tech_readiness: toIntOrNull(answers.Readiness),
-    willingness_to_pay: val(answers.WTP),
-    budget_range: val(answers.Budget),
-    contact_permission: contactPermission,
+    hotelType: isOwner ? val(answers.HotelType) : "",
+    rooms: isOwner ? val(answers.Rooms) : "",
+    biggestPain: buildBiggestPain(isOwner, answers),
+    desiredSolution: buildDesiredSolution(isOwner, answers),
+    techReadiness: isOwner ? toIntOrNull(answers.Readiness) : null,
+    willingnessToPay: isOwner ? val(answers.WTP) : "",
+    budgetRange: isOwner ? val(answers.Budget) : "",
+    contactPermission,
     name: val(contact.name),
     phone: val(contact.phone),
-    hotel_company: val(contact.hotel),
+    hotelCompany: val(contact.hotel),
     position: val(contact.role),
-    lead_score: leadScore,
+    leadScore,
     priority: getPriority(leadScore, audience),
-    follow_up_status: contactPermission === "Có" ? "New" : "No follow-up",
+    followUpStatus: contactPermission === "Có" ? "New" : "No follow-up",
     notes: buildNotes(payload, isOwner, answers),
-    answers,
-    resources: payload.resources ?? null,
-    contact: payload.contact ?? null,
-    consent: payload.consent === true,
-    page_url: val(payload.pageUrl),
-    user_agent: val(payload.userAgent),
-    completed_at: toCompletedAt(payload.completedAt),
   };
 
   try {
-    // Insert parameter-hoá vào Neon. Cột jsonb được stringify + cast ::jsonb.
+    // Insert parameter-hoá vào Neon. Tên cột dùng quoted identifiers (có dấu cách / ký tự đặc biệt).
+    // "Submit Date" để DEFAULT now() (thời điểm server nhận request).
     const inserted = await sql`
       INSERT INTO survey_responses (
-        survey_id, source, segment, audience, role, hotel_type, rooms,
-        biggest_pain, desired_solution, tech_readiness, willingness_to_pay,
-        budget_range, contact_permission, name, phone, hotel_company, position,
-        lead_score, priority, follow_up_status, notes,
-        answers, resources, contact, consent, page_url, user_agent, completed_at
+        "Survey ID", "Source", "Segment", "Role", "Hotel Type", "Rooms",
+        "Biggest Pain", "Desired Solution", "Tech Readiness 1-5",
+        "Willingness To Pay", "Budget Range", "Contact Permission",
+        "Name", "Phone", "Hotel/Company", "Position",
+        "Lead Score", "Priority", "Follow-up Status", "Notes"
       ) VALUES (
-        ${row.survey_id}, ${row.source}, ${row.segment}, ${row.audience}, ${row.role},
-        ${row.hotel_type}, ${row.rooms}, ${row.biggest_pain}, ${row.desired_solution},
-        ${row.tech_readiness}, ${row.willingness_to_pay}, ${row.budget_range},
-        ${row.contact_permission}, ${row.name}, ${row.phone}, ${row.hotel_company},
-        ${row.position}, ${row.lead_score}, ${row.priority}, ${row.follow_up_status},
-        ${row.notes},
-        ${JSON.stringify(row.answers)}::jsonb,
-        ${row.resources === null ? null : JSON.stringify(row.resources)}::jsonb,
-        ${row.contact === null ? null : JSON.stringify(row.contact)}::jsonb,
-        ${row.consent}, ${row.page_url}, ${row.user_agent}, ${row.completed_at}
+        ${row.surveyId}, ${row.source}, ${row.segment}, ${row.role},
+        ${row.hotelType}, ${row.rooms}, ${row.biggestPain}, ${row.desiredSolution},
+        ${row.techReadiness}, ${row.willingnessToPay}, ${row.budgetRange},
+        ${row.contactPermission}, ${row.name}, ${row.phone}, ${row.hotelCompany},
+        ${row.position}, ${row.leadScore}, ${row.priority}, ${row.followUpStatus},
+        ${row.notes}
       )
-      RETURNING id
+      RETURNING "Survey ID"
     `;
 
-    const id = inserted[0]?.id;
+    const id = inserted[0]?.["Survey ID"];
     return NextResponse.json({ ok: true, id });
   } catch (err) {
     // Không log payload cá nhân; chỉ trả message lỗi.

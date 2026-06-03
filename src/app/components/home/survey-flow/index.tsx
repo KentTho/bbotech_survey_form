@@ -41,7 +41,7 @@ const audienceOptions: {
 
 const ownerQuestions: SurveyQuestion[] = [
   { id: "B1", category: "Thông tin cơ bản", question: "Khách sạn/cơ sở lưu trú của anh/chị thuộc nhóm nào?", type: "single", required: true, options: ["1 sao", "2 sao", "3 sao", "Homestay", "Căn hộ dịch vụ", "Khác"], insight: "Phân loại loại hình", fieldKey: "HotelType" },
-  { id: "B2", category: "Thông tin cơ bản", question: "Khách sạn có khoảng bao nhiêu phòng?", type: "single", required: true, options: ["Dưới 10", "10–30", "31–60", "Trên 60"], insight: "Quy mô vận hành", fieldKey: "Rooms" },
+  { id: "B2", category: "Thông tin cơ bản", question: "Khách sạn có khoảng bao nhiêu phòng?", type: "single", required: true, options: ["Dưới 10", "10-30", "31-60", "Trên 60"], insight: "Quy mô vận hành", fieldKey: "Rooms" },
   { id: "B3", category: "Thông tin cơ bản", question: "Vai trò của anh/chị là gì?", type: "single", required: true, options: ["Chủ khách sạn", "Quản lý", "Lễ tân", "Marketing/Sales", "Nhân sự vận hành", "Khác"], insight: "Đánh giá quyền quyết định", fieldKey: "Role" },
   { id: "B4", category: "Kênh bán/phục vụ", question: "Khách sạn hiện nhận đặt phòng chủ yếu qua kênh nào?", type: "multiple", required: true, options: ["Facebook/Zalo", "Agoda/Booking/Traveloka", "Website riêng", "Khách quen", "Hotline", "Walk-in", "Khác"], insight: "Xác định điểm chạm cần automation", fieldKey: "Channel" },
   { id: "B5", category: "Pain point", question: "Khó khăn lớn nhất hiện tại của khách sạn là gì?", type: "multiple", required: true, options: ["Thiếu khách", "Trả lời khách chậm", "Quản lý đặt phòng thủ công", "Sai sót thông tin phòng", "Khó chăm sóc khách cũ", "Marketing chưa hiệu quả", "Nhân sự thiếu ổn định", "Không có hệ thống quản lý nội bộ", "Khác"], insight: "Top pain point", fieldKey: "Pain" },
@@ -52,7 +52,7 @@ const ownerQuestions: SurveyQuestion[] = [
   { id: "B10", category: "Nhu cầu", question: "Giải pháp nào khách sạn muốn có nhất?", type: "multiple", required: true, options: ["Chatbot tư vấn phòng", "Quản lý inbox", "Chăm sóc khách cũ", "Landing page/website", "Email/Zalo marketing", "Chấm công", "Ghi chú nội bộ", "Dashboard", "Thu thập đánh giá khách", "Khác"], insight: "Product opportunity", fieldKey: "Solution" },
   { id: "B11", category: "Nhu cầu", question: "Nếu được thử miễn phí một giải pháp, anh/chị muốn thử cái nào trước?", type: "short", required: false, insight: "Xác định pilot để chốt", fieldKey: "Pilot" },
   { id: "B12", category: "Chi trả", question: "Khách sạn có sẵn sàng trả phí hằng tháng cho giải pháp giúp tiết kiệm thời gian/tăng khách không?", type: "single", required: true, options: ["Có", "Có, nếu thấy hiệu quả", "Chưa chắc", "Không"], insight: "Willingness to pay", fieldKey: "WTP" },
-  { id: "B13", category: "Chi trả", question: "Mức phí hợp lý mỗi tháng là bao nhiêu?", type: "single", required: true, options: ["Dưới 500.000đ", "500.000đ–1.000.000đ", "1.000.000đ–3.000.000đ", "3.000.000đ–5.000.000đ", "Trên 5.000.000đ"], insight: "Pricing range", fieldKey: "Budget" },
+  { id: "B13", category: "Chi trả", question: "Mức phí hợp lý mỗi tháng là bao nhiêu?", type: "single", required: true, options: ["Dưới 500.000đ", "500.000đ-1.000.000đ", "1.000.000đ-3.000.000đ", "3.000.000đ-5.000.000đ", "Trên 5.000.000đ"], insight: "Pricing range", fieldKey: "Budget" },
   { id: "B14", category: "Lead", question: "Anh/chị có muốn BBOTech liên hệ tư vấn thử nghiệm giải pháp không?", type: "single", required: true, options: ["Có", "Không"], insight: "Consent to contact", fieldKey: "LeadConsent" },
   { id: "B15", category: "Lead", question: "Thông tin liên hệ", type: "contact", required: true, conditional: { dependsOnFieldKey: "LeadConsent", expectedValue: "Có" }, insight: "Lead capture", fieldKey: "Contact" },
 ];
@@ -60,13 +60,17 @@ const ownerQuestions: SurveyQuestion[] = [
 const guestQuestions: SurveyQuestion[] = [
   { id: "C1", category: "Hành vi", question: "Bạn có từng đi du lịch/lưu trú tại Vũng Tàu chưa?", type: "single", required: true, options: ["Có", "Chưa nhưng có dự định", "Chưa"], insight: "Lọc trải nghiệm liên quan", fieldKey: "TravelHistory" },
   { id: "C2", category: "Hành vi", question: "Bạn thường đặt khách sạn qua đâu?", type: "multiple", required: true, options: ["Agoda/Booking/Traveloka", "Facebook", "Google Maps", "Zalo/hotline", "Người quen", "Website khách sạn", "Khác"], insight: "Kênh tìm kiếm/đặt phòng", fieldKey: "BookingChannel" },
-  { id: "C3", category: "Hành vi", question: "Khi chọn khách sạn 2–3 sao, bạn quan tâm nhất điều gì?", type: "multiple", required: true, options: ["Giá", "Vị trí", "Hình ảnh phòng", "Đánh giá khách", "Phản hồi nhanh", "Chính sách hủy/đổi", "Dịch vụ đi kèm", "Độ uy tín", "Khác"], insight: "Decision criteria", fieldKey: "Criteria" },
+  { id: "C3", category: "Hành vi", question: "Khi chọn khách sạn, bạn quan tâm nhất điều gì?", type: "multiple", required: true, options: ["Giá", "Vị trí", "Hình ảnh phòng", "Đánh giá khách", "Phản hồi nhanh", "Chính sách hủy/đổi", "Dịch vụ đi kèm", "Độ uy tín", "Khác"], insight: "Decision criteria", fieldKey: "Criteria" },
+  { id: "C12", category: "Hành vi", question: "Bạn có hay nhắn trực tiếp fanpage/Zalo khách sạn để hỏi phòng không?", type: "single", required: true, options: ["Thường xuyên", "Thỉnh thoảng", "Hiếm khi", "Không, chỉ đặt qua app"], insight: "Direct-message behavior", fieldKey: "FanpageZalo" },
   { id: "C4", category: "Pain point", question: "Điều gì khiến bạn khó chịu nhất khi đặt khách sạn?", type: "multiple", required: true, options: ["Nhắn tin lâu được trả lời", "Giá không rõ", "Hình ảnh không giống thực tế", "Không biết còn phòng không", "Quy trình rườm rà", "Tư vấn thiếu thông tin", "Khó tìm dịch vụ", "Khác"], insight: "Customer pain", fieldKey: "B2CPain" },
   { id: "C5", category: "Pain point", question: "Bạn có từng bỏ qua một khách sạn vì họ phản hồi chậm không?", type: "single", required: true, options: ["Có", "Không", "Không nhớ"], insight: "Impact of response speed", fieldKey: "SlowReplyLoss" },
+  { id: "C14", category: "Pain point", question: "Bạn có từng gặp trường hợp giá báo sau khác giá ban đầu không?", type: "single", required: true, options: ["Có", "Không", "Không nhớ"], insight: "Price mismatch experience", fieldKey: "PriceMismatch" },
   { id: "C6", category: "Kỳ vọng", question: "Bạn thích khách sạn phản hồi trong bao lâu?", type: "single", required: true, options: ["Ngay lập tức", "Trong 5 phút", "Trong 15 phút", "Trong 1 giờ", "Bao lâu cũng được nếu thông tin rõ"], insight: "Service expectation", fieldKey: "ResponseTime" },
+  { id: "C13", category: "Kỳ vọng", question: "Khi nhắn hỏi phòng, bạn mong khách sạn trả lời những thông tin gì ngay?", type: "multiple", required: true, options: ["Giá phòng", "Còn phòng hay không", "Hình ảnh phòng", "Vị trí", "Giờ check-in/check-out", "Phụ phí", "Chính sách hủy", "Tiện nghi", "Ưu đãi/combo", "Khác"], insight: "Expected instant info", fieldKey: "ReplyInfo" },
   { id: "C7", category: "Kỳ vọng", question: "Bạn có thích khách sạn có chatbot/tự động trả lời thông tin cơ bản không?", type: "single", required: true, options: ["Có, nếu đúng và nhanh", "Có thể", "Không thích", "Không quan tâm"], insight: "Chatbot acceptance", fieldKey: "BotAcceptance" },
   { id: "C8", category: "Retention", question: "Sau khi lưu trú, bạn có muốn nhận ưu đãi/quà tặng/combo cho lần sau không?", type: "single", required: true, options: ["Có", "Có nếu phù hợp", "Không"], insight: "Retention potential", fieldKey: "Retention" },
   { id: "C9", category: "Retention", question: "Điều gì khiến bạn quay lại một khách sạn cũ?", type: "multiple", required: true, options: ["Giá tốt", "Phục vụ tốt", "Phòng sạch", "Gần biển/trung tâm", "Ưu đãi khách cũ", "Đặt phòng nhanh", "Nhân viên nhớ nhu cầu", "Khác"], insight: "Repeat driver", fieldKey: "Repeat" },
+  { id: "C15", category: "Niềm tin", question: "Điều gì khiến bạn tin tưởng một khách sạn nhỏ trước khi đặt phòng?", type: "multiple", required: true, options: ["Review tốt", "Fanpage cập nhật thường xuyên", "Hình ảnh thật", "Nhân viên trả lời rõ ràng"], insight: "Trust factors", fieldKey: "TrustFactor" },
   { id: "C10", category: "Mở", question: "Theo bạn, khách sạn nhỏ nên cải thiện điều gì nhất?", type: "long", required: false, insight: "Qualitative insight", fieldKey: "OpenInsight" },
 ];
 
@@ -268,7 +272,7 @@ export default function SurveyFlow() {
 
     try {
       const payload = buildSubmissionPayload();
-      // Submit chính qua API route nội bộ → Supabase (server-side, dùng service role).
+      // Submit chính qua API route nội bộ → Neon PostgreSQL (server-side, dùng DATABASE_URL).
       // Không dùng no-cors: cần đọc được JSON response để biết thành công/thất bại.
       const res = await fetch("/api/survey/submit", {
         method: "POST",
@@ -420,7 +424,7 @@ export default function SurveyFlow() {
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-            <div className="rounded-lg border border-border bg-white p-6 shadow-property dark:border-dark_border dark:bg-semidark sm:p-8">
+            <div className="rounded-lg border border-border bg-white p-5 shadow-property dark:border-dark_border dark:bg-semidark sm:p-7">
               {!audience && (
                 <div data-survey-state="empty">
                   <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
@@ -476,7 +480,7 @@ export default function SurveyFlow() {
 
               {audience && !submitted && (
                 <>
-                  <div className="mb-7 flex gap-2" aria-label="Tiến độ khảo sát">
+                  <div className="mb-5 flex gap-2" aria-label="Tiến độ khảo sát">
                     {Array.from({ length: visibleQuestions.length + 1 }).map(
                       (_, index) => (
                         <span
@@ -494,7 +498,7 @@ export default function SurveyFlow() {
                         {currentQuestion.category}
                       </p>
                       <p className="mt-2 text-sm text-gray">
-                        Câu {step + 1} / {audience === "guest" ? "10" : visibleQuestions.length}
+                        Câu {step + 1} / {visibleQuestions.length}
                       </p>
                       <h3 className="mt-3 text-2xl font-bold text-midnight_text dark:text-white">
                         {currentQuestion.question}
@@ -506,9 +510,11 @@ export default function SurveyFlow() {
                         </p>
                       )}
 
+                      {/* Options area: scroll nội bộ để nút Next luôn nằm trong khung nhìn */}
+                      <div className="mt-5 max-h-[calc(100svh-320px)] min-h-[140px] overflow-y-auto pr-1">
                       {/* Single / Scale Options */}
                       {(currentQuestion.type === "single" || currentQuestion.type === "scale") && (
-                        <div className={`mt-6 grid gap-3 ${currentQuestion.type === "scale" ? "grid-cols-5" : ""}`}>
+                        <div className={`grid gap-3 ${currentQuestion.type === "scale" ? "grid-cols-5" : ""}`}>
                           {currentQuestion.options?.map((option) => {
                             const selected = answers[currentQuestion.fieldKey] === option;
                             return (
@@ -531,7 +537,7 @@ export default function SurveyFlow() {
 
                       {/* Multiple Options */}
                       {currentQuestion.type === "multiple" && (
-                        <div className="mt-6 grid gap-3">
+                        <div className="grid gap-3 sm:grid-cols-2">
                           {currentQuestion.options?.map((option) => {
                             const selectedArr = answers[currentQuestion.fieldKey] || [];
                             const selected = selectedArr.includes(option);
@@ -562,7 +568,7 @@ export default function SurveyFlow() {
 
                       {/* Short Answer */}
                       {currentQuestion.type === "short" && (
-                        <div className="mt-6">
+                        <div>
                           <input
                             type="text"
                             value={answers[currentQuestion.fieldKey] || ""}
@@ -575,7 +581,7 @@ export default function SurveyFlow() {
 
                       {/* Long Answer */}
                       {currentQuestion.type === "long" && (
-                        <div className="mt-6">
+                        <div>
                           <textarea
                             rows={4}
                             value={answers[currentQuestion.fieldKey] || ""}
@@ -588,7 +594,7 @@ export default function SurveyFlow() {
 
                       {/* Contact Fields */}
                       {currentQuestion.type === "contact" && (
-                        <div className="mt-6 grid gap-4">
+                        <div className="grid gap-4">
                           <input
                             type="text"
                             value={answers["Contact"]?.name || ""}
@@ -620,7 +626,9 @@ export default function SurveyFlow() {
                         </div>
                       )}
 
-                      <div className="mt-7 flex items-center justify-between gap-3">
+                      </div>
+
+                      <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-5 dark:border-dark_border">
                         <button
                           type="button"
                           data-survey-action="back"
@@ -652,7 +660,9 @@ export default function SurveyFlow() {
                         Gần xong rồi! Chọn tài nguyên và xác nhận.
                       </h3>
 
-                      <div className="mt-6 grid gap-3">
+                      {/* Vùng nội dung cuộn nội bộ để nút Gửi luôn nằm trong khung nhìn */}
+                      <div className="mt-5 max-h-[calc(100svh-320px)] min-h-[140px] overflow-y-auto pr-1">
+                      <div className="grid gap-3">
                         {incentiveItems.map((item) => (
                           <label
                             key={item}
@@ -699,7 +709,9 @@ export default function SurveyFlow() {
                         </span>
                       </label>
 
-                      <div className="mt-7 flex items-center justify-between gap-3">
+                      </div>
+
+                      <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-5 dark:border-dark_border">
                         <button
                           type="button"
                           data-survey-action="back"
@@ -749,7 +761,7 @@ export default function SurveyFlow() {
                 ))}
               </div>
               <p className="mt-6 border-t border-border pt-5 text-sm font-semibold text-midnight_text dark:border-dark_border dark:text-white">
-                Mất khoảng 3–5 phút · {audience === "owner" ? "14–15" : "10"} câu
+                Mất khoảng 3–5 phút · {audience === "owner" ? "14–15" : "14"} câu
               </p>
             </aside>
           </div>
