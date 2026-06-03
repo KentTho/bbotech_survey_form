@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const reasons = [
   {
     title: "Hiểu khó khăn vận hành",
@@ -83,14 +87,42 @@ const reasons = [
   },
 ];
 
+const cardDelays = ["0ms", "90ms", "180ms", "270ms"];
+
 export default function Why() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="why-anchor"
-      className="scroll-mt-24 bg-section dark:bg-darkmode"
+      className={`why-section scroll-mt-24 bg-section dark:bg-darkmode ${
+        isVisible ? "is-visible" : ""
+      }`}
     >
       <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
-        <div className="max-w-3xl">
+        <div className="why-animate max-w-3xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             Lý do tham gia
           </p>
@@ -105,25 +137,30 @@ export default function Why() {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map((reason) => (
-            <article
+          {reasons.map((reason, index) => (
+            <div
               key={reason.title}
-              className="rounded-lg border border-border bg-white p-6 shadow-property transition-transform duration-300 hover:-translate-y-1 dark:border-dark_border dark:bg-semidark"
+              className="why-card-animate h-full"
+              style={
+                { "--delay": cardDelays[index] ?? "0ms" } as React.CSSProperties
+              }
             >
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                {reason.icon}
-              </div>
-              <h3 className="text-xl font-bold text-midnight_text dark:text-white">
-                {reason.title}
-              </h3>
-              <p className="mt-3 leading-7 text-gray">{reason.description}</p>
-            </article>
+              <article className="flex h-full flex-col rounded-lg border border-border bg-white p-6 shadow-property transition-transform duration-300 hover:-translate-y-1.5 dark:border-dark_border dark:bg-semidark">
+                <div className="why-icon mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  {reason.icon}
+                </div>
+                <h3 className="text-xl font-bold text-midnight_text dark:text-white">
+                  {reason.title}
+                </h3>
+                <p className="mt-3 leading-7 text-gray">{reason.description}</p>
+              </article>
+            </div>
           ))}
         </div>
 
         <a
           href="#surveyAnchor"
-          className="mt-10 inline-flex rounded-lg bg-primary px-6 py-3 text-lg font-medium text-white transition-colors hover:bg-[#207138]"
+          className="why-animate mt-10 inline-flex rounded-lg bg-primary px-6 py-3 text-lg font-medium text-white transition-colors hover:bg-[#207138]"
         >
           Làm khảo sát 3 phút
         </a>
