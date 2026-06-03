@@ -15,14 +15,6 @@ export default function Home() {
       <Why />
       <SurveyFlow />
       <About />
-      {/* <DiscoverProperties /> */}
-      {/* <Listing /> */}
-      {/* <Calculator />
-      <Features />
-      <History />
-      <Testimonials />
-      <CompanyInfo />
-      <BlogSmall /> */}
     </main>
   )
 }

@@ -23,21 +23,21 @@ const audienceOptions: {
   description: string;
   icon: "hotel" | "guest";
 }[] = [
-  {
-    key: "owner",
-    title: "Chủ / Quản lý / Nhân sự khách sạn",
-    description:
-      "Tôi đang vận hành, quản lý hoặc làm việc tại khách sạn, homestay, cơ sở lưu trú.",
-    icon: "hotel",
-  },
-  {
-    key: "guest",
-    title: "Khách từng đặt / lưu trú khách sạn",
-    description:
-      "Tôi từng đặt phòng hoặc lưu trú tại khách sạn, homestay, cơ sở lưu trú.",
-    icon: "guest",
-  },
-];
+    {
+      key: "owner",
+      title: "Chủ / Quản lý / Nhân sự khách sạn",
+      description:
+        "Tôi đang vận hành, quản lý hoặc làm việc tại khách sạn, homestay, cơ sở lưu trú.",
+      icon: "hotel",
+    },
+    {
+      key: "guest",
+      title: "Khách từng đặt / lưu trú khách sạn",
+      description:
+        "Tôi từng đặt phòng hoặc lưu trú tại khách sạn, homestay, cơ sở lưu trú.",
+      icon: "guest",
+    },
+  ];
 
 const ownerQuestions: SurveyQuestion[] = [
   { id: "B1", category: "Thông tin cơ bản", question: "Khách sạn/cơ sở lưu trú của anh/chị thuộc nhóm nào?", type: "single", required: true, options: ["1 sao", "2 sao", "3 sao", "Homestay", "Căn hộ dịch vụ", "Khác"], insight: "Phân loại loại hình", fieldKey: "HotelType" },
@@ -159,7 +159,7 @@ export default function SurveyFlow() {
       : audience === "guest"
         ? guestQuestions
         : [];
-  
+
   const visibleQuestions = baseQuestions.filter(q => {
     if (!q.conditional) return true;
     return answers[q.conditional.dependsOnFieldKey] === q.conditional.expectedValue;
@@ -304,7 +304,7 @@ export default function SurveyFlow() {
       case "single": return "Chọn 1 đáp án.";
       case "multiple": return "Chọn một hoặc nhiều đáp án phù hợp.";
       case "scale": return "Chọn mức phù hợp nhất.";
-      case "short": 
+      case "short":
       case "long": return "Có thể bỏ qua nếu chưa có câu trả lời.";
       default: return "";
     }
@@ -312,6 +312,41 @@ export default function SurveyFlow() {
 
   return (
     <>
+
+
+      <section className="bg-herobg dark:bg-darklight">
+        <div className="container mx-auto grid gap-8 px-4 md:max-w-screen-md lg:max-w-screen-xl lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Phần thưởng
+            </p>
+            <h2>Hoàn thành khảo sát để nhận tài nguyên miễn phí từ BBOTech</h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-gray">
+              Người tham gia có thể nhận checklist tối ưu trải nghiệm khách sạn, bản tóm tắt insight hoặc tư vấn sơ bộ miễn phí nếu phù hợp.
+            </p>
+            <p className="mt-4 font-medium text-midnight_text dark:text-white">
+              Bạn sẽ chọn tài nguyên muốn nhận ở bước cuối khảo sát.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-white p-6 shadow-property dark:border-dark_border dark:bg-semidark">
+            <div className="space-y-4">
+              {incentiveItems.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 text-midnight_text dark:text-white"
+                >
+                  <span className="mt-0.5 text-primary">
+                    <CheckIcon />
+                  </span>
+                  <span className="leading-7">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="aud-anchor"
         className="scroll-mt-24 bg-white dark:bg-darkmode"
@@ -343,13 +378,12 @@ export default function SurveyFlow() {
                   aria-disabled={isDisabled}
                   disabled={isDisabled}
                   onClick={() => selectAudience(option.key)}
-                  className={`rounded-lg border p-6 text-left shadow-property transition-all duration-300 ${
-                    selected
+                  className={`rounded-lg border p-6 text-left shadow-property transition-all duration-300 ${selected
                       ? "border-primary bg-herobg ring-2 ring-primary/20 dark:bg-semidark"
                       : isDisabled
                         ? "cursor-not-allowed border-border bg-white opacity-50 dark:border-dark_border dark:bg-semidark"
                         : "border-border bg-white hover:-translate-y-1 dark:border-dark_border dark:bg-semidark"
-                  }`}
+                    }`}
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <AudienceIcon type={option.icon} />
@@ -366,39 +400,6 @@ export default function SurveyFlow() {
                 </button>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-herobg dark:bg-darklight">
-        <div className="container mx-auto grid gap-8 px-4 md:max-w-screen-md lg:max-w-screen-xl lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
-          <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              Phần thưởng
-            </p>
-            <h2>Hoàn thành khảo sát để nhận tài nguyên miễn phí từ BBOTech</h2>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-gray">
-              Người tham gia có thể nhận checklist tối ưu trải nghiệm khách sạn, bản tóm tắt insight hoặc tư vấn sơ bộ miễn phí nếu phù hợp.
-            </p>
-            <p className="mt-4 font-medium text-midnight_text dark:text-white">
-              Bạn sẽ chọn tài nguyên muốn nhận ở bước cuối khảo sát.
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-border bg-white p-6 shadow-property dark:border-dark_border dark:bg-semidark">
-            <div className="space-y-4">
-              {incentiveItems.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 text-midnight_text dark:text-white"
-                >
-                  <span className="mt-0.5 text-primary">
-                    <CheckIcon />
-                  </span>
-                  <span className="leading-7">{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -480,9 +481,8 @@ export default function SurveyFlow() {
                       (_, index) => (
                         <span
                           key={index}
-                          className={`h-2 flex-1 rounded-full ${
-                            index <= step ? "bg-primary" : "bg-herobg"
-                          }`}
+                          className={`h-2 flex-1 rounded-full ${index <= step ? "bg-primary" : "bg-herobg"
+                            }`}
                         />
                       ),
                     )}
@@ -499,7 +499,7 @@ export default function SurveyFlow() {
                       <h3 className="mt-3 text-2xl font-bold text-midnight_text dark:text-white">
                         {currentQuestion.question}
                       </h3>
-                      
+
                       {getHint(currentQuestion.type) && (
                         <p className="mt-2 text-sm italic text-gray">
                           {getHint(currentQuestion.type)}
@@ -517,11 +517,10 @@ export default function SurveyFlow() {
                                 type="button"
                                 aria-pressed={selected}
                                 onClick={() => handleSingleSelect(currentQuestion.fieldKey, option)}
-                                className={`${buttonBase} ${currentQuestion.type === "scale" ? "text-center px-0" : ""} ${
-                                  selected
+                                className={`${buttonBase} ${currentQuestion.type === "scale" ? "text-center px-0" : ""} ${selected
                                     ? "border-primary bg-herobg text-midnight_text dark:bg-darklight dark:text-white"
                                     : "border-border text-gray hover:border-primary hover:text-midnight_text dark:border-dark_border dark:hover:text-white"
-                                }`}
+                                  }`}
                               >
                                 {option}
                               </button>
@@ -542,11 +541,10 @@ export default function SurveyFlow() {
                                 type="button"
                                 aria-pressed={selected}
                                 onClick={() => handleMultipleSelect(currentQuestion.fieldKey, option)}
-                                className={`${buttonBase} ${
-                                  selected
+                                className={`${buttonBase} ${selected
                                     ? "border-primary bg-herobg text-midnight_text dark:bg-darklight dark:text-white"
                                     : "border-border text-gray hover:border-primary hover:text-midnight_text dark:border-dark_border dark:hover:text-white"
-                                }`}
+                                  }`}
                               >
                                 <div className="flex items-center gap-3">
                                   <div className={`flex h-5 w-5 items-center justify-center rounded border ${selected ? "bg-primary border-primary" : "border-border"}`}>
@@ -658,11 +656,10 @@ export default function SurveyFlow() {
                         {incentiveItems.map((item) => (
                           <label
                             key={item}
-                            className={`${buttonBase} flex cursor-pointer items-start gap-3 ${
-                              resource === item
+                            className={`${buttonBase} flex cursor-pointer items-start gap-3 ${resource === item
                                 ? "border-primary bg-herobg text-midnight_text dark:bg-darklight dark:text-white"
                                 : "border-border text-gray dark:border-dark_border"
-                            }`}
+                              }`}
                           >
                             <input
                               type="radio"
