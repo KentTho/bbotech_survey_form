@@ -1,4 +1,5 @@
 import { Montserrat } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Aoscompo from "@/utils/aos";
@@ -8,6 +9,12 @@ import { AppContextProvider } from "../context-api/PropertyContext";
 import Footer from "./components/layout/footer";
 import ScrollToTop from "./components/scroll-to-top";
 import Header from "./components/layout/header";
+
+export const metadata: Metadata = {
+  title: "BBO TECH - KHẢO SÁT",
+  description:
+    "Khảo sát nhu cầu chuyển đổi số cho khách sạn tại Vũng Tàu.",
+};
 
 export default function RootLayout({
   children,

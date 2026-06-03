@@ -8,7 +8,7 @@ export default function About() {
   return (
     <section
       id="about-anchor"
-      className="scroll-mt-24 bg-white dark:bg-darkmode"
+      className="scroll-mt-24 bg-white pt-10 pb-16 dark:bg-darkmode lg:pt-16 lg:pb-24"
     >
       <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div className="overflow-hidden rounded-lg border border-border bg-herobg shadow-property dark:border-dark_border dark:bg-semidark">

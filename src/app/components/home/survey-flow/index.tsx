@@ -5,7 +5,7 @@ export default function SurveyFlow() {
   return (
     <section
       id="surveyAnchor"
-      className="scroll-mt-24 bg-section dark:bg-darkmode"
+      className="scroll-mt-24 bg-section pt-10 pb-6 dark:bg-darkmode lg:pt-16 lg:pb-10"
     >
       <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div className="mx-auto max-w-3xl text-center">
@@ -24,7 +24,7 @@ export default function SurveyFlow() {
             src={googleFormSrc}
             title="BBOTech hotel survey form"
             loading="lazy"
-            className="block h-[1800px] w-full border-0 lg:h-[1600px]"
+            className="block h-[760px] w-full border-0 sm:h-[720px] lg:h-[700px]"
           />
         </div>
 
