@@ -197,7 +197,7 @@ export default function SurveyFlow() {
       <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div
           ref={surveyCardRef}
-          className="bbo-glass relative mx-auto max-w-4xl overflow-hidden rounded-[28px] border-primary/15 p-4 dark:bbo-glass-dark sm:p-6 lg:p-7"
+          className="bbo-glass relative mx-auto max-w-4xl overflow-hidden rounded-[24px] border-primary/15 p-3 dark:bbo-glass-dark sm:rounded-[28px] sm:p-6 lg:p-7"
         >
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
           <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
@@ -226,7 +226,7 @@ export default function SurveyFlow() {
 
           <div className="relative z-10">
             {isSurveyCompleted ? (
-              <div className="mx-auto max-w-3xl text-center">
+              <div className="mx-auto max-w-3xl min-w-0 text-center">
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/20">
                   <CheckIcon />
                 </div>
@@ -238,12 +238,12 @@ export default function SurveyFlow() {
                   Cảm ơn bạn đã đóng góp thông tin cho BBOTech. Phần quà/ưu đãi
                   khảo sát sẽ được gửi theo thông tin bạn đã để lại.
                 </p>
-                <p className="mx-auto mt-6 inline-flex rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
+                <p className="mx-auto mt-6 inline-flex max-w-full rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-center text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
                   Bạn đã hoàn thành khảo sát trên thiết bị này.
                 </p>
               </div>
             ) : !isSurveyStarted ? (
-              <div className="text-center">
+              <div className="min-w-0 text-center">
                 <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
                   Khảo sát 3–5 phút
                 </p>
@@ -258,7 +258,7 @@ export default function SurveyFlow() {
                   {surveyBadges.map((badge) => (
                     <span
                       key={badge}
-                      className="rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10"
+                      className="max-w-full rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-center text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10"
                     >
                       {badge}
                     </span>
@@ -275,9 +275,9 @@ export default function SurveyFlow() {
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="min-w-0">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
+                  <div className="min-w-0">
                     <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                       Đang làm khảo sát
                     </p>
@@ -291,14 +291,14 @@ export default function SurveyFlow() {
                   <button
                     type="button"
                     onClick={collapseSurvey}
-                    className="inline-flex shrink-0 rounded-xl border border-primary/25 bg-white/70 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white dark:bg-white/10"
+                    className="inline-flex w-full shrink-0 justify-center rounded-xl border border-primary/25 bg-white/70 px-4 py-2 text-center text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white dark:bg-white/10 sm:w-auto"
                   >
                     Thu gọn biểu mẫu
                   </button>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm dark:border-primary/20">
-                  <div className="h-[680px] sm:h-[620px] lg:h-[560px]">
+                <div className="mt-6 w-full overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm dark:border-primary/20">
+                  <div className="h-[620px] w-full sm:h-[620px] lg:h-[560px]">
                     <iframe
                       src={googleFormSrc}
                       title="BBOTech hotel survey form"
@@ -318,13 +318,13 @@ export default function SurveyFlow() {
                   >
                     Mở Google Form trong tab mới
                   </a>
-                  <span className="inline-flex rounded-full border border-primary/15 bg-white/70 px-3 py-1 text-xs font-semibold text-primary dark:bg-white/10">
+                  <span className="inline-flex max-w-full rounded-full border border-primary/15 bg-white/70 px-3 py-1 text-center text-xs font-semibold text-primary dark:bg-white/10">
                     Tự phát hiện sau khi form tải lại
                   </span>
                 </div>
 
                 {hasDetectedThankYou ? (
-                  <div className="mt-6 rounded-2xl border border-primary/20 bg-primary p-5 text-white shadow-lg shadow-primary/20">
+                  <div className="mt-6 rounded-2xl border border-primary/20 bg-primary p-4 text-white shadow-lg shadow-primary/20 sm:p-5">
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/80">
                       Bạn đã gửi biểu mẫu?
                     </p>
@@ -335,14 +335,14 @@ export default function SurveyFlow() {
                     <button
                       type="button"
                       onClick={completeSurvey}
-                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-primary transition-colors hover:bg-white/90 sm:w-auto"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 whitespace-normal rounded-xl bg-white px-5 py-3 text-center text-sm font-bold text-primary transition-colors hover:bg-white/90 sm:w-auto"
                     >
                       <SparkIcon />
                       Nhận quà khảo sát
                     </button>
                   </div>
                 ) : canShowFallbackReward ? (
-                  <div className="mt-6 rounded-2xl border border-primary/15 bg-primary/5 p-5">
+                  <div className="mt-6 rounded-2xl border border-primary/15 bg-primary/5 p-4 sm:p-5">
                     <p className="text-sm leading-6 text-primary/80">
                       Nếu bạn đã bấm Gửi trong Google Form nhưng chưa thấy xác
                       nhận tự động, hãy dùng nút này.
@@ -350,7 +350,7 @@ export default function SurveyFlow() {
                     <button
                       type="button"
                       onClick={completeSurvey}
-                      className="mt-4 inline-flex w-full items-center justify-center rounded-xl border border-primary bg-white px-5 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white sm:w-auto"
+                      className="mt-4 inline-flex w-full items-center justify-center whitespace-normal rounded-xl border border-primary bg-white px-5 py-3 text-center text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white sm:w-auto"
                     >
                       Tôi đã gửi biểu mẫu — nhận quà
                     </button>

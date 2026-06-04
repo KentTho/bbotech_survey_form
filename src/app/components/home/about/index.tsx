@@ -50,9 +50,9 @@ export default function About() {
       <div className="pointer-events-none absolute right-0 top-12 h-80 w-80 rounded-full bg-primary/12 blur-3xl" />
 
       <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
-        <div className="bbo-glass overflow-hidden rounded-[32px] p-4 dark:bbo-glass-dark sm:p-6 lg:p-8">
+        <div className="bbo-glass overflow-hidden rounded-[24px] p-4 dark:bbo-glass-dark sm:rounded-[32px] sm:p-6 lg:p-8">
           <div className="grid items-center gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-10">
-            <div>
+            <div className="min-w-0">
               <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
                 Về chúng tôi
               </p>
@@ -98,18 +98,18 @@ export default function About() {
               </Link>
             </div>
 
-            <div className="relative">
+            <div className="relative min-w-0">
               <div className="pointer-events-none absolute inset-8 rounded-full bg-primary/15 blur-3xl" />
-              <div className="relative overflow-hidden rounded-[28px] border border-primary/15 bg-primary p-5 shadow-xl shadow-primary/20">
-                <div className="rounded-[22px] border border-white/10 bg-white/[0.08] p-5 backdrop-blur">
-                  <div className="flex items-center justify-between gap-4">
+              <div className="relative overflow-hidden rounded-[24px] border border-primary/15 bg-primary p-4 shadow-xl shadow-primary/20 sm:rounded-[28px] sm:p-5">
+                <div className="rounded-[20px] border border-white/10 bg-white/[0.08] p-4 backdrop-blur sm:rounded-[22px] sm:p-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
                     <Image
                       src={getImgPath("/images/logo/logo-white.png")}
                       alt="BBOTech"
                       width={220}
                       height={72}
                       quality={100}
-                      className="h-12 w-auto max-w-[180px] object-contain"
+                      className="h-10 w-auto max-w-[145px] object-contain sm:h-12 sm:max-w-[180px]"
                     />
                     <span className="rounded-full border border-white/30 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                       Workflow
@@ -144,7 +144,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="bbo-glass mt-6 flex gap-4 rounded-[24px] p-5 dark:bbo-glass-dark sm:p-6">
+        <div className="bbo-glass mt-6 flex flex-col gap-4 rounded-[24px] p-5 dark:bbo-glass-dark sm:flex-row sm:p-6">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary">
             <svg
               aria-hidden="true"

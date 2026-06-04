@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { PropertyContext } from "@/context-api/PropertyContext";
 import { getImgPath, getDataPath } from "@/utils/pathUtils";
 
+const heroMascotSrc = getImgPath("/images/hero/hero-image-mascot.png");
+
 const Hero = () => {
   const router = useRouter();
   const [propertiesData, setPropertiesData] = useState<any[]>([])
@@ -65,21 +67,21 @@ const Hero = () => {
   };
 
   return (
-    <section className="bbo-ambient dark:bbo-ambient-dark relative overflow-hidden pt-36 pb-14 dark:bg-darklight lg:pt-44 lg:pb-10">
+    <section className="bbo-ambient dark:bbo-ambient-dark relative overflow-hidden pt-32 pb-14 dark:bg-darklight sm:pt-36 lg:pt-44 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
       <div className="pointer-events-none absolute right-0 top-20 h-80 w-80 rounded-full bg-[#8DC73F]/15 blur-3xl" />
 
       <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
           <div
-            className="bbo-fade-up col-span-6 flex flex-col items-start justify-center"
+            className="bbo-fade-up col-span-6 flex min-w-0 flex-col items-start justify-center"
             data-aos="fade-right"
           >
             <div className="mb-8">
               <p className="mb-4 inline-flex rounded-full border border-primary/20 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
                 BBOTech · Nghiên cứu thị trường khách sạn
               </p>
-              <h1 className="max-w-3xl text-4xl font-bold leading-[1.08] text-midnight_text dark:text-white md:text-[58px]">
+              <h1 className="max-w-3xl break-words text-[32px] font-bold leading-[1.1] text-midnight_text dark:text-white sm:text-4xl md:text-[58px]">
                 KHẢO SÁT NHU CẦU{" "}
                 <span className="bg-gradient-to-r from-primary to-[#6abf4b] bg-clip-text text-transparent">
                   CHUYỂN ĐỔI SỐ
@@ -93,16 +95,16 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href="#surveyAnchor"
-                className="inline-flex rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
+                className="inline-flex w-full justify-center rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#207138] sm:w-auto"
               >
                 Bắt đầu khảo sát
               </a>
               <a
                 href="#why-anchor"
-                className="inline-flex rounded-full border border-primary/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-primary backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white dark:bg-white/10"
+                className="inline-flex w-full justify-center rounded-full border border-primary/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-primary backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white dark:bg-white/10 sm:w-auto"
               >
                 Xem lý do tham gia
               </a>
@@ -121,20 +123,21 @@ const Hero = () => {
               )}
             </div>
           </div>
-          <div className="relative col-span-6 hidden min-h-[520px] lg:block">
-            <div className="bbo-glass bbo-lift absolute right-0 top-8 w-[520px] rounded-[32px] p-5 dark:bbo-glass-dark">
-              <div className="rounded-[24px] bg-gradient-to-br from-primary/10 to-[#8DC73F]/10 p-4">
+          <div className="bbo-fade-up relative col-span-6 min-w-0 lg:min-h-[520px]">
+            <div className="bbo-glass bbo-lift relative mx-auto w-full max-w-[640px] rounded-[28px] p-2 dark:bbo-glass-dark sm:p-4 lg:absolute lg:right-0 lg:top-8">
+              <div className="overflow-hidden rounded-[22px] border border-primary/10 bg-white/75 p-1 sm:p-2">
                 <Image
-                  src={getImgPath("/images/hero/hero-image.png")}
-                  alt="BBOTech survey visual"
-                  width={760}
-                  height={520}
-                  style={{ width: "100%", height: "auto" }}
+                  src={heroMascotSrc}
+                  alt="BBOTech mascot survey assistant"
+                  width={1672}
+                  height={941}
+                  className="h-auto max-h-[320px] w-full object-contain sm:max-h-[380px] lg:max-h-none"
                   priority
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 720px, 640px"
                 />
               </div>
             </div>
-            <div className="bbo-glass absolute bottom-10 left-2 w-64 rounded-2xl p-5 dark:bbo-glass-dark">
+            <div className="bbo-glass relative mx-auto mt-4 w-full max-w-sm rounded-2xl p-4 dark:bbo-glass-dark sm:p-5 lg:absolute lg:bottom-10 lg:left-2 lg:mx-0 lg:mt-0 lg:w-64">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
                 Insight nhanh
               </p>
