@@ -246,3 +246,45 @@ html {
         transform: translateY(0);
     }
 }
+
+.bbotech-confetti-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bbotech-confetti-piece {
+    position: absolute;
+    top: 12%;
+    left: var(--x);
+    width: var(--size);
+    height: calc(var(--size) * 1.7);
+    border-radius: 9999px;
+    background: var(--color);
+    opacity: 0;
+    transform: translate3d(0, -16px, 0) rotate(var(--rotate));
+    animation: bbotechConfettiFall var(--duration) ease-out var(--delay) forwards;
+}
+
+@keyframes bbotechConfettiFall {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -16px, 0) rotate(var(--rotate));
+    }
+    12% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--drift), 260px, 0) rotate(calc(var(--rotate) + 540deg));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bbotech-confetti-piece {
+        animation: none;
+        opacity: 0;
+    }
+}
