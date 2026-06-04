@@ -47,13 +47,19 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all ${
+      className={`fixed top-0 z-50 w-full px-3 transition-all duration-300 ${
         sticky
-          ? "bg-white shadow-lg dark:bg-semidark dark:shadow-darkmd"
-          : "bg-transparent shadow-none"
+          ? "py-3"
+          : "py-4"
       }`}
     >
-      <div className="container mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-3 px-4 lg:h-24">
+      <div
+        className={`container mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-3 rounded-2xl px-4 transition-all duration-300 lg:h-20 lg:px-6 ${
+          sticky
+            ? "bbo-glass dark:bbo-glass-dark"
+            : "border border-transparent bg-white/70 shadow-none backdrop-blur-md dark:bg-darkmode/50"
+        }`}
+      >
         <Logo />
 
         <nav className="hidden flex-grow items-center justify-center gap-6 lg:flex xl:gap-8">
@@ -61,7 +67,7 @@ const Header: React.FC = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap py-3 text-base font-normal text-midnight_text transition-colors hover:text-primary dark:text-white dark:hover:text-primary"
+              className="rounded-full px-3 py-2 text-sm font-semibold text-midnight_text/80 transition-colors hover:bg-primary/10 hover:text-primary dark:text-white/85 dark:hover:text-primary"
             >
               {item.label}
             </Link>
@@ -71,14 +77,14 @@ const Header: React.FC = () => {
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <Link
             href="#surveyAnchor"
-            className="hidden whitespace-nowrap rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#207138] lg:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(41,141,67,0.26)] transition-all hover:-translate-y-0.5 hover:bg-[#207138] lg:inline-flex"
           >
             Bắt đầu khảo sát
           </Link>
 
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
-            className="block rounded-lg p-2 lg:hidden"
+            className="block rounded-xl border border-primary/10 bg-white/70 p-2 shadow-sm backdrop-blur dark:bg-darkmode/70 lg:hidden"
             aria-label="Toggle mobile menu"
             aria-expanded={navbarOpen}
           >
@@ -90,12 +96,12 @@ const Header: React.FC = () => {
       </div>
 
       {navbarOpen && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden" />
+        <div className="fixed inset-0 z-40 bg-midnight_text/40 backdrop-blur-sm lg:hidden" />
       )}
 
       <div
         ref={mobileMenuRef}
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-xs transform bg-white shadow-lg transition-transform duration-300 dark:bg-darkmode lg:hidden ${
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-xs transform border-l border-primary/10 bg-white/90 shadow-2xl backdrop-blur-xl transition-transform duration-300 dark:bg-darkmode/95 lg:hidden ${
           navbarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -131,7 +137,7 @@ const Header: React.FC = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="w-full rounded-md px-3 py-2 text-midnight_text transition-colors hover:bg-section hover:text-primary dark:text-white dark:hover:bg-semidark dark:hover:text-primary"
+              className="w-full rounded-xl px-3 py-2.5 font-semibold text-midnight_text transition-colors hover:bg-primary/10 hover:text-primary dark:text-white dark:hover:bg-semidark dark:hover:text-primary"
               onClick={() => setNavbarOpen(false)}
             >
               {item.label}
@@ -140,7 +146,7 @@ const Header: React.FC = () => {
 
           <Link
             href="#surveyAnchor"
-            className="mt-4 w-full rounded-lg bg-primary px-4 py-2 text-center font-medium text-white transition-colors hover:bg-[#207138]"
+            className="mt-4 w-full rounded-xl bg-primary px-4 py-3 text-center font-semibold text-white shadow-[0_14px_34px_rgba(41,141,67,0.24)] transition-colors hover:bg-[#207138]"
             onClick={() => setNavbarOpen(false)}
           >
             Bắt đầu khảo sát

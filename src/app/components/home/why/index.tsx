@@ -117,13 +117,16 @@ export default function Why() {
     <section
       ref={sectionRef}
       id="why-anchor"
-      className={`why-section scroll-mt-24 bg-section dark:bg-darkmode ${
+      className={`why-section bbo-ambient relative scroll-mt-24 overflow-hidden dark:bbo-ambient-dark ${
         isVisible ? "is-visible" : ""
       }`}
     >
-      <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
+      <div className="pointer-events-none absolute -right-20 top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute left-10 bottom-10 h-64 w-64 rounded-full bg-[#8DC73F]/10 blur-3xl" />
+
+      <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div className="why-animate max-w-3xl">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+          <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
             Lý do tham gia
           </p>
           <h2 className="text-midnight_text dark:text-white">
@@ -145,8 +148,8 @@ export default function Why() {
                 { "--delay": cardDelays[index] ?? "0ms" } as React.CSSProperties
               }
             >
-              <article className="flex h-full flex-col rounded-lg border border-border bg-white p-6 shadow-property transition-transform duration-300 hover:-translate-y-1.5 dark:border-dark_border dark:bg-semidark">
-                <div className="why-icon mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <article className="bbo-glass bbo-lift flex h-full flex-col rounded-[24px] p-6 dark:bbo-glass-dark">
+                <div className="why-icon mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary shadow-inner">
                   {reason.icon}
                 </div>
                 <h3 className="text-xl font-bold text-midnight_text dark:text-white">
@@ -160,7 +163,7 @@ export default function Why() {
 
         <a
           href="#surveyAnchor"
-          className="why-animate mt-10 inline-flex rounded-lg bg-primary px-6 py-3 text-lg font-medium text-white transition-colors hover:bg-[#207138]"
+          className="why-animate mt-10 inline-flex rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.25)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
         >
           Làm khảo sát 3 phút
         </a>

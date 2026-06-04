@@ -65,78 +65,83 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-44 pb-0 dark:bg-darklight bg-no-repeat bg-gradient-to-b from-white from-10% dark:from-darkmode to-herobg to-90% dark:to-darklight overflow-x-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md relative z-10">
-        <div className="grid lg:grid-cols-12 grid-cols-1">
+    <section className="bbo-ambient dark:bbo-ambient-dark relative overflow-hidden pt-36 pb-14 dark:bg-darklight lg:pt-44 lg:pb-10">
+      <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-20 h-80 w-80 rounded-full bg-[#8DC73F]/15 blur-3xl" />
+
+      <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div
-            className="flex flex-col col-span-6 justify-center items-start"
+            className="bbo-fade-up col-span-6 flex flex-col items-start justify-center"
             data-aos="fade-right"
           >
             <div className="mb-8">
-              <p className="mb-3 ml-4 text-sm font-medium text-primary">
-                BBOTech · Nghiên cứu thị trường khách sạn Vũng Tàu
+              <p className="mb-4 inline-flex rounded-full border border-primary/20 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
+                BBOTech · Nghiên cứu thị trường khách sạn
               </p>
-              <h1 className="md:text-[50px] leading-[1.2] text-4xl  ml-4 text-midnight_text dark:text-white font-bold">
-                KHẢO SÁT NHU CẦU <span className="text-primary">CHUYỂN ĐỔI SỐ</span> KHÁCH SẠN TẠI VŨNG TÀU
+              <h1 className="max-w-3xl text-4xl font-bold leading-[1.08] text-midnight_text dark:text-white md:text-[58px]">
+                KHẢO SÁT NHU CẦU{" "}
+                <span className="bg-gradient-to-r from-primary to-[#6abf4b] bg-clip-text text-transparent">
+                  CHUYỂN ĐỔI SỐ
+                </span>{" "}
+                KHÁCH SẠN
               </h1>
-              <p className="mt-4 ml-4 max-w-xl text-base text-gray dark:text-white">
-                BBOTech đang thực hiện khảo sát ngắn để tìm hiểu khó khăn thực tế trong vận hành, đặt phòng, chăm sóc khách hàng và marketing của khách sạn vừa và nhỏ.
+              <p className="mt-5 max-w-xl text-lg leading-8 text-gray dark:text-white/80">
+                BBOTech đang thực hiện khảo sát ngắn để tìm hiểu khó khăn thực
+                tế trong vận hành, đặt phòng, chăm sóc khách hàng và marketing
+                của khách sạn vừa và nhỏ.
               </p>
             </div>
-            <div className="flex flex-col justify-start ml-4 mt-8 mb-12 gap-3">
-              <div className="flex space-x-2" data-aos="fade-left">
-                <svg
-                  className="w-6 h-6 text-[#298D43]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.763l-6 5.847L19.336 24 12 20.019 4.664 24 6 15.61 0 9.763l8.332-1.745z" />
-                </svg>
-                <svg
-                  className="w-6 h-6 text-[#298D43]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.763l-6 5.847L19.336 24 12 20.019 4.664 24 6 15.61 0 9.763l8.332-1.745z" />
-                </svg>
-                <svg
-                  className="w-6 h-6 text-[#298D43]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.763l-6 5.847L19.336 24 12 20.019 4.664 24 6 15.61 0 9.763l8.332-1.745z" />
-                </svg>
-                <svg
-                  className="w-6 h-6 text-[#298D43]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.763l-6 5.847L19.336 24 12 20.019 4.664 24 6 15.61 0 9.763l8.332-1.745z" />
-                </svg>
-                <svg
-                  className="w-6 h-6 text-[#298D43]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.763l-6 5.847L19.336 24 12 20.019 4.664 24 6 15.61 0 9.763l8.332-1.745z" />
-                </svg>
-              </div>
-              <div data-aos="fade-left">
-                <p className="text-lg dark:text-white text-black">
-                  Chỉ 3–5 phút
-                  <span className="text-gray-400"> · Dữ liệu chỉ dùng để tổng hợp nghiên cứu</span>
-                </p>
-              </div>
+
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#surveyAnchor"
+                className="inline-flex rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
+              >
+                Bắt đầu khảo sát
+              </a>
+              <a
+                href="#why-anchor"
+                className="inline-flex rounded-full border border-primary/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-primary backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white dark:bg-white/10"
+              >
+                Xem lý do tham gia
+              </a>
+            </div>
+
+            <div className="mt-8 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+              {["3–5 phút", "2 nhóm trả lời", "Dùng cho nghiên cứu"].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-primary/15 bg-white/70 px-4 py-3 text-sm font-semibold text-midnight_text shadow-sm backdrop-blur dark:bg-white/10 dark:text-white"
+                  >
+                    {item}
+                  </div>
+                ),
+              )}
             </div>
           </div>
-          <div className="lg:block hidden col-span-6 absolute xl:-right-60 right-0 bottom-0 -z-1">
-            <Image
-              src={getImgPath("/images/hero/hero-image.png")}
-              alt="heroimage"
-              width={800}
-              height={0}
-              style={{ width: "100%", height: "auto" }}
-            />
+          <div className="relative col-span-6 hidden min-h-[520px] lg:block">
+            <div className="bbo-glass bbo-lift absolute right-0 top-8 w-[520px] rounded-[32px] p-5 dark:bbo-glass-dark">
+              <div className="rounded-[24px] bg-gradient-to-br from-primary/10 to-[#8DC73F]/10 p-4">
+                <Image
+                  src={getImgPath("/images/hero/hero-image.png")}
+                  alt="BBOTech survey visual"
+                  width={760}
+                  height={520}
+                  style={{ width: "100%", height: "auto" }}
+                  priority
+                />
+              </div>
+            </div>
+            <div className="bbo-glass absolute bottom-10 left-2 w-64 rounded-2xl p-5 dark:bbo-glass-dark">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+                Insight nhanh
+              </p>
+              <p className="mt-2 text-lg font-bold text-midnight_text dark:text-white">
+                Hiểu đúng nhu cầu trước khi xây giải pháp
+              </p>
+            </div>
           </div>
         </div>
       </div>

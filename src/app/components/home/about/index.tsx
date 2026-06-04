@@ -8,12 +8,13 @@ export default function About() {
   return (
     <section
       id="about-anchor"
-      className="scroll-mt-24 bg-white pt-10 pb-16 dark:bg-darkmode lg:pt-16 lg:pb-24"
+      className="relative scroll-mt-24 overflow-hidden bg-white pt-10 pb-16 dark:bg-darkmode lg:pt-16 lg:pb-24"
     >
-      <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
-        <div className="overflow-hidden rounded-lg border border-border bg-herobg shadow-property dark:border-dark_border dark:bg-semidark">
-          <div className="grid items-center gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12 lg:p-12">
-            <div className="flex min-h-56 items-center justify-center rounded-lg border border-border bg-white p-8 dark:border-dark_border">
+      <div className="pointer-events-none absolute right-0 top-12 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
+        <div className="bbo-glass overflow-hidden rounded-[28px] p-4 dark:bbo-glass-dark sm:p-6 lg:p-8">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+            <div className="flex min-h-60 items-center justify-center rounded-[24px] border border-primary/10 bg-white/80 p-8 shadow-inner dark:bg-white/5">
               <Image
                 src={getImgPath("/images/logo/logo.png")}
                 alt="BBOTech"
@@ -24,7 +25,7 @@ export default function About() {
             </div>
 
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
                 Về chúng tôi
               </p>
               <h2 className="text-midnight_text dark:text-white">
@@ -40,16 +41,29 @@ export default function About() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-midnight_text dark:border-dark_border dark:bg-darkmode dark:text-white"
+                    className="rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-midnight_text shadow-sm backdrop-blur dark:bg-white/10 dark:text-white"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {["AI ứng dụng", "Automation", "Đội ngũ linh hoạt"].map(
+                  (item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-primary/10 bg-white/65 p-4 text-sm font-semibold text-midnight_text backdrop-blur dark:bg-white/5 dark:text-white"
+                    >
+                      {item}
+                    </div>
+                  ),
+                )}
+              </div>
+
               <Link
                 href="#surveyAnchor"
-                className="mt-8 inline-flex rounded-lg bg-primary px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#207138]"
+                className="mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-base font-semibold text-white shadow-[0_16px_38px_rgba(41,141,67,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
               >
                 Tìm hiểu BBOTech
               </Link>
@@ -57,8 +71,8 @@ export default function About() {
           </div>
         </div>
 
-        <div className="mt-6 flex gap-4 rounded-lg border border-border bg-section p-5 dark:border-dark_border dark:bg-semidark sm:p-6">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <div className="bbo-glass mt-6 flex gap-4 rounded-[24px] p-5 dark:bbo-glass-dark sm:p-6">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary">
             <svg
               aria-hidden="true"
               className="h-6 w-6"

@@ -13,7 +13,7 @@ import Header from "./components/layout/header";
 export const metadata: Metadata = {
   title: "BBO TECH - KHẢO SÁT",
   description:
-    "Khảo sát nhu cầu chuyển đổi số cho khách sạn tại Vũng Tàu.",
+    "Khảo sát nhu cầu chuyển đổi số cho khách sạn.",
 };
 
 export default function RootLayout({
