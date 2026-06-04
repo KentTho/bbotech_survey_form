@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const googleFormSrc =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdrsOJT_K_iHBnSb_bqGfhofMZIQoRzPIlTr7u4KgNLf9KEaw/viewform?embedded=true";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfU_qWFZ_bdPL_nie5ybq91DCKEFDxFEg3tNEmaZho75jmTYQ/viewform?embedded=true";
 
 const surveyCompletionStorageKey = "bbotech_survey_completed_v1";
 const fallbackRewardDelayMs = 50000;
@@ -34,9 +34,9 @@ type ConfettiStyle = CSSProperties & {
 };
 
 const surveyBadges = [
-  "Chủ / Quản lý khách sạn",
-  "Khách từng đặt phòng",
-  "Có thể để lại SĐT/Email nếu muốn được liên hệ",
+  "Người dùng du lịch",
+  "Chủ / quản lý khách sạn",
+  "Có thể để lại SĐT/Email",
 ];
 
 function CheckIcon() {
@@ -197,7 +197,7 @@ export default function SurveyFlow() {
       <div className="container mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div
           ref={surveyCardRef}
-          className="bbo-glass relative mx-auto max-w-4xl overflow-hidden rounded-[24px] border-primary/15 p-3 dark:bbo-glass-dark sm:rounded-[28px] sm:p-6 lg:p-7"
+          className="bbo-glass relative mx-auto max-w-5xl overflow-hidden rounded-[24px] border-primary/15 p-3 dark:bbo-glass-dark sm:rounded-[28px] sm:p-6 lg:p-7"
         >
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
           <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
@@ -235,8 +235,8 @@ export default function SurveyFlow() {
                 </p>
                 <h2 className="text-primary">Bạn đã hoàn thành khảo sát</h2>
                 <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-primary/80">
-                  Cảm ơn bạn đã đóng góp thông tin cho BBOTech. Phần quà/ưu đãi
-                  khảo sát sẽ được gửi theo thông tin bạn đã để lại.
+                  Cảm ơn bạn đã chia sẻ thông tin. Phần quà hoặc ưu đãi khảo
+                  sát sẽ được gửi theo thông tin bạn đã để lại trong biểu mẫu.
                 </p>
                 <p className="mx-auto mt-6 inline-flex max-w-full rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-center text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
                   Bạn đã hoàn thành khảo sát trên thiết bị này.
@@ -247,11 +247,12 @@ export default function SurveyFlow() {
                 <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
                   Khảo sát 3–5 phút
                 </p>
-                <h2 className="text-primary">Làm khảo sát 3–5 phút</h2>
+                <h2 className="text-primary">
+                  Chia sẻ cách bạn dùng AI khi tìm khách sạn
+                </h2>
                 <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-primary/80">
-                  Vui lòng hoàn thành biểu mẫu bên dưới. Câu trả lời sẽ được
-                  BBOTech dùng để tổng hợp nhu cầu thị trường và chuẩn bị ưu đãi
-                  phù hợp.
+                  Hoàn thành biểu mẫu ngắn để giúp BBOTech hiểu cách người dùng
+                  tìm kiếm, so sánh và lựa chọn khách sạn bằng AI.
                 </p>
 
                 <div className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-3">
@@ -281,10 +282,12 @@ export default function SurveyFlow() {
                     <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                       Đang làm khảo sát
                     </p>
-                    <h2 className="text-primary">Làm khảo sát 3–5 phút</h2>
+                    <h2 className="text-primary">
+                      Biểu mẫu khảo sát AI & khách sạn
+                    </h2>
                     <p className="mt-4 max-w-3xl text-base leading-7 text-primary/80">
-                      Hoàn thành Google Form trong khung bên dưới. Sau khi form
-                      chuyển sang màn hình xác nhận, nút nhận quà sẽ xuất hiện.
+                      Vui lòng hoàn thành biểu mẫu bên dưới. Nếu biểu mẫu không
+                      hiển thị, bạn có thể mở Google Form trong tab mới.
                     </p>
                   </div>
 
@@ -298,7 +301,7 @@ export default function SurveyFlow() {
                 </div>
 
                 <div className="mt-6 w-full overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm dark:border-primary/20">
-                  <div className="h-[620px] w-full sm:h-[620px] lg:h-[560px]">
+                  <div className="h-[720px] w-full sm:h-[740px] lg:h-[720px]">
                     <iframe
                       src={googleFormSrc}
                       title="BBOTech hotel survey form"

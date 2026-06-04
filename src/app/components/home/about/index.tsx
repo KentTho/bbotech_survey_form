@@ -5,23 +5,23 @@ import { getImgPath } from "@/utils/pathUtils";
 const tags = ["AI ứng dụng", "Automation", "TaaS"];
 
 const checklist = [
-  "Tối ưu vận hành",
+  "Hiểu hành vi tìm kiếm",
   "Tự động hoá quy trình",
-  "Tăng tốc phản hồi khách hàng",
+  "Tối ưu trải nghiệm số",
 ];
 
 const workflowCards = [
   {
     title: "Lắng nghe",
-    description: "Thu thập nhu cầu thực tế từ khách sạn và khách đặt phòng.",
+    description: "Thu thập cách người dùng tìm và so sánh khách sạn bằng AI.",
   },
   {
     title: "Phân tích",
-    description: "Tìm điểm nghẽn trong vận hành, phản hồi và chăm sóc khách.",
+    description: "Xác định nhu cầu, điểm nghẽn và tiêu chí ra quyết định.",
   },
   {
     title: "Đề xuất",
-    description: "Xây giải pháp AI, Automation và TaaS vừa đủ cho đội ngũ nhỏ.",
+    description: "Xây giải pháp hỗ trợ người dùng chọn khách sạn nhanh hơn.",
   },
 ];
 
@@ -54,15 +54,15 @@ export default function About() {
           <div className="grid items-center gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-10">
             <div className="min-w-0">
               <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
-                Về chúng tôi
+                Về BBOTech
               </p>
               <h2 className="max-w-2xl text-primary">
-                BBOTech là ai?
+                BBOTech nghiên cứu hành vi tìm khách sạn bằng AI
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-primary/80">
-                BBOTech cung cấp giải pháp công nghệ ứng dụng AI, Automation và
-                TaaS, đóng vai trò như một phòng IT linh hoạt cho doanh nghiệp
-                nhỏ.
+                BBOTech phát triển giải pháp AI, Automation và TaaS giúp doanh
+                nghiệp hiểu khách hàng, tự động hoá quy trình và tạo trải
+                nghiệm số dễ dùng hơn.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -94,7 +94,7 @@ export default function About() {
                 href="#surveyAnchor"
                 className="mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-base font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90"
               >
-                Tìm hiểu BBOTech
+                Chia sẻ góc nhìn của bạn
               </Link>
             </div>
 
@@ -167,8 +167,7 @@ export default function About() {
             </h3>
             <p className="mt-2 leading-7 text-primary/80">
               Dữ liệu khảo sát được dùng cho mục đích phân tích nhu cầu thị
-              trường và liên hệ tư vấn chỉ khi người tham gia đồng ý. Bạn xác
-              nhận đồng ý ngay ở bước cuối khảo sát.
+              trường và liên hệ tư vấn chỉ khi người tham gia đồng ý.
             </p>
           </div>
         </div>

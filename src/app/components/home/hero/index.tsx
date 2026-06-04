@@ -79,19 +79,19 @@ const Hero = () => {
           >
             <div className="mb-8">
               <p className="mb-4 inline-flex rounded-full border border-primary/20 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
-                BBOTech · Nghiên cứu thị trường khách sạn
+                AI TRAVEL INSIGHT
               </p>
               <h1 className="max-w-3xl break-words text-[32px] font-bold leading-[1.1] text-midnight_text dark:text-white sm:text-4xl md:text-[58px]">
-                KHẢO SÁT NHU CẦU{" "}
+                Bạn dùng{" "}
                 <span className="bg-gradient-to-r from-primary to-[#6abf4b] bg-clip-text text-transparent">
-                  CHUYỂN ĐỔI SỐ
+                  AI
                 </span>{" "}
-                KHÁCH SẠN
+                để tìm khách sạn như thế nào?
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-8 text-gray dark:text-white/80">
-                BBOTech đang thực hiện khảo sát ngắn để tìm hiểu khó khăn thực
-                tế trong vận hành, đặt phòng, chăm sóc khách hàng và marketing
-                của khách sạn vừa và nhỏ.
+                Chúng tôi đang tìm hiểu cách người dùng dùng AI để lên kế
+                hoạch du lịch, so sánh khách sạn và chọn nơi lưu trú phù hợp
+                hơn.
               </p>
             </div>
 
@@ -100,18 +100,18 @@ const Hero = () => {
                 href="#surveyAnchor"
                 className="inline-flex w-full justify-center rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.28)] transition-all hover:-translate-y-0.5 hover:bg-[#207138] sm:w-auto"
               >
-                Bắt đầu khảo sát
+                Làm khảo sát ngay
               </a>
               <a
                 href="#why-anchor"
                 className="inline-flex w-full justify-center rounded-full border border-primary/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-primary backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white dark:bg-white/10 sm:w-auto"
               >
-                Xem lý do tham gia
+                Tìm hiểu mục tiêu
               </a>
             </div>
 
             <div className="mt-8 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {["3–5 phút", "2 nhóm trả lời", "Dùng cho nghiên cứu"].map(
+              {["Gợi ý phù hợp", "Tiết kiệm thời gian", "Quyết định tự tin"].map(
                 (item) => (
                   <div
                     key={item}
@@ -139,10 +139,10 @@ const Hero = () => {
             </div>
             <div className="bbo-glass relative mx-auto mt-4 w-full max-w-sm rounded-2xl p-4 dark:bbo-glass-dark sm:p-5 lg:absolute lg:bottom-10 lg:left-2 lg:mx-0 lg:mt-0 lg:w-64">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-                Insight nhanh
+                Hành trình AI
               </p>
               <p className="mt-2 text-lg font-bold text-midnight_text dark:text-white">
-                Hiểu đúng nhu cầu trước khi xây giải pháp
+                Hỏi AI, so sánh nhanh, chọn khách sạn phù hợp
               </p>
             </div>
           </div>

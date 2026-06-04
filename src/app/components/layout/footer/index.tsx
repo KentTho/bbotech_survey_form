@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <p className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm leading-6 text-white/85 backdrop-blur md:text-right">
-          © 2026 BBOTech · Khảo sát khách sạn
+          © 2026 BBOTech · Khảo sát AI & khách sạn
         </p>
       </div>
     </footer>

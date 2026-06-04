@@ -7,8 +7,8 @@ import { useTheme } from "next-themes";
 import Logo from "./logo";
 
 const navigationItems = [
-  { label: "Lý do tham gia", href: "#why-anchor" },
-  { label: "Đối tượng", href: "#aud-anchor" },
+  { label: "Vì sao tham gia", href: "#why-anchor" },
+  { label: "Cách dùng AI", href: "#surveyAnchor" },
   { label: "Khảo sát", href: "#surveyAnchor" },
   { label: "BBOTech", href: "#about-anchor" },
 ];

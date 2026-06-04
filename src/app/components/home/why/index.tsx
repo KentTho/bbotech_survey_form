@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 const reasons = [
   {
-    title: "Hiểu khó khăn vận hành",
+    title: "Hiểu cách hỏi AI",
     description:
-      "Lắng nghe vấn đề thực tế hằng ngày của khách sạn vừa và nhỏ.",
+      "Người dùng có thể hỏi về giá, vị trí, tiện nghi và đánh giá khách sạn.",
     icon: (
       <svg
         aria-hidden="true"
@@ -25,8 +25,8 @@ const reasons = [
     ),
   },
   {
-    title: "Ghi nhận nhu cầu",
-    description: "Nắm đúng mong muốn của các cơ sở lưu trú quy mô nhỏ.",
+    title: "Tìm điểm đau đặt phòng",
+    description: "Nhiều người vẫn mất thời gian so sánh thông tin từ nhiều nguồn.",
     icon: (
       <svg
         aria-hidden="true"
@@ -45,8 +45,8 @@ const reasons = [
     ),
   },
   {
-    title: "Tìm điểm tối ưu",
-    description: "Xác định khâu có thể cải thiện bằng công nghệ phù hợp.",
+    title: "Xây AI thực tế hơn",
+    description: "Dữ liệu khảo sát giúp tạo trải nghiệm tìm khách sạn dễ dùng hơn.",
     icon: (
       <svg
         aria-hidden="true"
@@ -65,9 +65,9 @@ const reasons = [
     ),
   },
   {
-    title: "Tạo tài nguyên hữu ích",
+    title: "Kết nối nhanh hơn",
     description:
-      "Trả lại checklist và insight thiết thực cho người tham gia.",
+      "AI có thể hỗ trợ phản hồi nhanh, gợi ý phù hợp và giảm thao tác thủ công.",
     icon: (
       <svg
         aria-hidden="true"
@@ -127,15 +127,14 @@ export default function Why() {
       <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
         <div className="why-animate max-w-3xl">
           <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
-            Lý do tham gia
+            Vì sao tham gia
           </p>
           <h2 className="text-midnight_text dark:text-white">
             Vì sao khảo sát này quan trọng?
           </h2>
           <p className="mt-5 text-lg leading-8 text-gray">
-            Khách hàng cần phản hồi nhanh hơn, khách sạn nhỏ thiếu nhân sự và
-            công cụ, nhiều quy trình còn thủ công. BBOTech muốn hiểu đúng vấn đề
-            trước khi đề xuất giải pháp.
+            AI đang thay đổi cách người dùng tìm thông tin du lịch. Câu trả lời
+            của bạn giúp BBOTech hiểu hành vi thật trước khi xây sản phẩm.
           </p>
         </div>
 
@@ -165,7 +164,7 @@ export default function Why() {
           href="#surveyAnchor"
           className="why-animate mt-10 inline-flex rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_44px_rgba(41,141,67,0.25)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
         >
-          Làm khảo sát 3 phút
+          Làm khảo sát ngay
         </a>
       </div>
     </section>
