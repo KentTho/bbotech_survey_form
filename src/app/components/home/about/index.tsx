@@ -46,7 +46,7 @@ export default function About() {
       id="about-anchor"
       className="relative scroll-mt-24 overflow-hidden bg-white pt-10 pb-16 dark:bg-darkmode lg:pt-16 lg:pb-24"
     >
-      <div className="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-[#8DC73F]/12 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute right-0 top-12 h-80 w-80 rounded-full bg-primary/12 blur-3xl" />
 
       <div className="container relative z-10 mx-auto px-4 md:max-w-screen-md lg:max-w-screen-xl">
@@ -56,10 +56,10 @@ export default function About() {
               <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur dark:bg-white/10">
                 Về chúng tôi
               </p>
-              <h2 className="max-w-2xl text-midnight_text dark:text-white">
+              <h2 className="max-w-2xl text-primary">
                 BBOTech là ai?
               </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-gray">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-primary/80">
                 BBOTech cung cấp giải pháp công nghệ ứng dụng AI, Automation và
                 TaaS, đóng vai trò như một phòng IT linh hoạt cho doanh nghiệp
                 nhỏ.
@@ -69,7 +69,7 @@ export default function About() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-midnight_text shadow-sm backdrop-blur dark:bg-white/10 dark:text-white"
+                    className="rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10"
                   >
                     {tag}
                   </span>
@@ -80,7 +80,7 @@ export default function About() {
                 {checklist.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-primary/10 bg-white/70 p-4 text-sm font-semibold text-midnight_text backdrop-blur dark:bg-white/5 dark:text-white"
+                    className="flex items-center gap-3 rounded-2xl border border-primary/10 bg-white/70 p-4 text-sm font-semibold text-primary backdrop-blur dark:bg-white/5"
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                       <CheckIcon />
@@ -92,7 +92,7 @@ export default function About() {
 
               <Link
                 href="#surveyAnchor"
-                className="mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-base font-semibold text-white shadow-[0_16px_38px_rgba(41,141,67,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#207138]"
+                className="mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-base font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90"
               >
                 Tìm hiểu BBOTech
               </Link>
@@ -100,7 +100,7 @@ export default function About() {
 
             <div className="relative">
               <div className="pointer-events-none absolute inset-8 rounded-full bg-primary/15 blur-3xl" />
-              <div className="relative overflow-hidden rounded-[28px] border border-primary/15 bg-gradient-to-br from-[#08251b] via-[#0f3a2a] to-[#102a20] p-5 shadow-[0_26px_80px_rgba(6,31,23,0.28)]">
+              <div className="relative overflow-hidden rounded-[28px] border border-primary/15 bg-primary p-5 shadow-xl shadow-primary/20">
                 <div className="rounded-[22px] border border-white/10 bg-white/[0.08] p-5 backdrop-blur">
                   <div className="flex items-center justify-between gap-4">
                     <Image
@@ -111,7 +111,7 @@ export default function About() {
                       quality={100}
                       className="h-12 w-auto max-w-[180px] object-contain"
                     />
-                    <span className="rounded-full border border-[#8DC73F]/30 bg-[#8DC73F]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#B7F36E]">
+                    <span className="rounded-full border border-white/30 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
                       Workflow
                     </span>
                   </div>
@@ -120,17 +120,17 @@ export default function About() {
                     {workflowCards.map((card, index) => (
                       <article
                         key={card.title}
-                        className="rounded-2xl border border-white/10 bg-white/[0.09] p-4 text-white shadow-sm backdrop-blur"
+                        className="rounded-2xl border border-primary/10 bg-white p-4 text-primary shadow-sm backdrop-blur"
                       >
                         <div className="flex items-start gap-3">
                           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                             {index + 1}
                           </span>
                           <div>
-                            <h3 className="text-lg font-bold text-white">
+                            <h3 className="text-lg font-bold text-primary">
                               {card.title}
                             </h3>
-                            <p className="mt-1 text-sm leading-6 text-white/72">
+                            <p className="mt-1 text-sm leading-6 text-primary/75">
                               {card.description}
                             </p>
                           </div>
@@ -162,10 +162,10 @@ export default function About() {
             </svg>
           </div>
           <div>
-            <h3 className="text-xl font-bold text-midnight_text dark:text-white">
+            <h3 className="text-xl font-bold text-primary">
               Thông tin của bạn được dùng để tổng hợp nghiên cứu
             </h3>
-            <p className="mt-2 leading-7 text-gray">
+            <p className="mt-2 leading-7 text-primary/80">
               Dữ liệu khảo sát được dùng cho mục đích phân tích nhu cầu thị
               trường và liên hệ tư vấn chỉ khi người tham gia đồng ý. Bạn xác
               nhận đồng ý ngay ở bước cuối khảo sát.
