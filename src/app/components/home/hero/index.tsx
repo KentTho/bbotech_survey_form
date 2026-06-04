@@ -81,12 +81,16 @@ const Hero = () => {
               <p className="mb-4 inline-flex rounded-full border border-primary/20 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur dark:bg-white/10">
                 AI TRAVEL INSIGHT
               </p>
-              <h1 className="max-w-3xl break-words text-[32px] font-bold leading-[1.1] text-midnight_text dark:text-white sm:text-4xl md:text-[58px]">
-                Bạn dùng{" "}
-                <span className="bg-gradient-to-r from-primary to-[#6abf4b] bg-clip-text text-transparent">
-                  AI
-                </span>{" "}
-                để tìm khách sạn như thế nào?
+              <h1 className="max-w-[660px] text-[clamp(2.35rem,10vw,3.1rem)] font-bold leading-[1.14] tracking-[-0.015em] text-midnight_text dark:text-white sm:text-[clamp(2.75rem,6.5vw,3.8rem)] lg:text-[clamp(3rem,4.4vw,4.2rem)]">
+                <span className="block">
+                  Bạn dùng{" "}
+                  <span className="bg-gradient-to-r from-primary to-[#6abf4b] bg-clip-text text-transparent">
+                    AI
+                  </span>{" "}
+                  để
+                </span>
+                <span className="block">tìm khách sạn</span>
+                <span className="block">như thế nào?</span>
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-8 text-gray dark:text-white/80">
                 Chúng tôi đang tìm hiểu cách người dùng dùng AI để lên kế
